@@ -17,4 +17,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SensorRepository extends MongoRepository<Sensor, String> {
+
 }
