@@ -21,4 +21,9 @@ public class RouteController {
         return "createNetwork";
     }
 
+    @RequestMapping("/about")
+    public String about(){
+        return "about";
+    }
+
 }
