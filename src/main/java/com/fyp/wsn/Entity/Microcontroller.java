@@ -16,8 +16,18 @@ public class Microcontroller {
     private String allias;
     private String color;
     private String type;
+    private String configuration;
 
     public Microcontroller() {
+    }
+
+    public Microcontroller(String id, String name, String allias, String color, String type, String configuration) {
+        this.id = id;
+        this.name = name;
+        this.allias = allias;
+        this.color = color;
+        this.type = type;
+        this.configuration = configuration;
     }
 
     public Microcontroller(String id, String name, String allias, String color, String type) {
@@ -26,6 +36,14 @@ public class Microcontroller {
         this.allias = allias;
         this.color = color;
         this.type = type;
+    }
+
+    public String getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(String configuration) {
+        this.configuration = configuration;
     }
 
     public String getId() {

@@ -17,6 +17,7 @@ public class Sensor {
     private String id;
     private String name;
     private String type;
+    private String configuration;
     private String color;
 
     //constructors and getters and setters are auto generated
@@ -32,10 +33,27 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(String id, String name, String type) {
+    public String getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(String configuration) {
+        this.configuration = configuration;
+    }
+
+    public Sensor(String id, String name, String type, String configuration, String color) {
         this.id = id;
         this.name = name;
         this.type = type;
+        this.configuration = configuration;
+        this.color = color;
+    }
+
+    public Sensor(String id, String name, String type, String color) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.color=color;
     }
 
     public String getId() {

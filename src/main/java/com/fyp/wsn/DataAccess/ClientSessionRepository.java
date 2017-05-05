@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ClientSessionRepository extends MongoRepository<ClientSession, String> {
+public interface ClientSessionRepository extends MongoRepository<ClientSession, Integer> {
 }

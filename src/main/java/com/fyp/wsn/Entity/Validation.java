@@ -9,13 +9,14 @@ public class Validation {
 
     //Id of record
     @Id
-    private String id;
+    private int id;
     private int code;
     private String error_description;
     private String config_diagram;
     private String type;
 
-
+    public Validation() {
+    }
 
     public Validation(int code, String error_description, String config_diagram, String type) {
         this.code = code;
@@ -24,7 +25,15 @@ public class Validation {
         this.type = type;
     }
 
-    public String getId() {
+    public Validation(int id, int code, String error_description, String config_diagram, String type) {
+        this.id = id;
+        this.code = code;
+        this.error_description = error_description;
+        this.config_diagram = config_diagram;
+        this.type = type;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -44,7 +53,7 @@ public class Validation {
         return type;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

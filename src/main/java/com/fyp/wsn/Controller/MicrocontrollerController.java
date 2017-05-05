@@ -1,6 +1,8 @@
 package com.fyp.wsn.Controller;
 
+import com.fyp.wsn.Entity.Microcontroller;
 import com.fyp.wsn.Entity.Sensor;
+import com.fyp.wsn.Services.MicrocontrollerService;
 import com.fyp.wsn.Services.SensorService;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
@@ -11,38 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 /**
- * Created by Asela on 5/3/2017.
+ * Created by Nadith Premaratne on 04/05/2017.
  */
 
-/*
-* This is the controller of routing. Using this kind of class all the routing in Application will be handled.
-* This class defines what are the end points that front-end can access and what type of requests can be enter to those
-* end points.
-* */
-
-/*
-* This @RestController annotation defines that this is a RESTFull controller( CRUD operations possible )
-* */
 @RestController
 // This is how you map your end points to entire class
-@RequestMapping("/sensors")
+@RequestMapping("/microcontroller")
 //This annotation for auto generate API documentation
 @Api(
-        name = "Sensor data API",
-        description = "This API provides set of methords that can use to manipulate sensor data"
+        name = "microcontroller data API",
+        description = "This API provides set of methords that can use to manipulate microcontroller data"
 )
-public class SensorController {
+public class MicrocontrollerController {
 
-    // connecting with sensor service class(where business logic is implemented)
     @Autowired
-    private SensorService sensorService;
+    private MicrocontrollerService microcontrollerService;
 
     //Defining the request method (this time it is GET)
     @RequestMapping(method = RequestMethod.GET)
     //For API documentation
     @ApiMethod(description = "Get all available sensors in System ")
-    public Collection<Sensor> getAllSensors(){
-        return sensorService.getAllSensors();
+    public Collection<Microcontroller> getAllMicrocontrollers(){
+        return microcontrollerService.getAllMicrocontrollers();
     }
 
 
@@ -56,27 +48,26 @@ public class SensorController {
     // @ApiPathParam for add documentation
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ApiMethod(description = "Get specific sensor details by Id ")
-    public Sensor getSensorById(@ApiPathParam(name = "Id") @PathVariable("id") String id){
-        return sensorService.getSensorById(id);
+    public Microcontroller getMicrocontrollerById(@ApiPathParam(name = "Id") @PathVariable("id") String id){
+        return microcontrollerService.getMicrocontrollerById(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ApiMethod(description = "Delete sensors by its Id")
-    public void removeSensorById(@ApiPathParam(name = "Id") @PathVariable("id") String id){
-        sensorService.removeSensorById(id);
+    public void removeMicrocontrollerById(@ApiPathParam(name = "Id") @PathVariable("id") String id){
+        microcontrollerService.removeMicrocontrollerById(id);
     }
 
     // If request is POST or PUT and it contains request body @RequestBody annotation is need
     @RequestMapping(method = RequestMethod.PUT)
     @ApiMethod(description = "Update Sensor details")
-    public void updateSensorById(@RequestBody Sensor sensor){
-        sensorService.updateSensorById(sensor);
+    public void updateMicrocontrollerById(@RequestBody Microcontroller microcontroller){
+        microcontrollerService.updateMicrocontrollerById(microcontroller);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ApiMethod(description = "Add new sensors to system")
-    public void insertSensorById(@RequestBody Sensor sensor){
-        sensorService.insertSensor(sensor);
+    public void insertSensorById(@RequestBody Microcontroller microcontroller){
+        microcontrollerService.insertMicrocontroller(microcontroller);
     }
 }
-

@@ -18,23 +18,23 @@ public class MicrocontrollerDAO {
     private MicrocontrollerRepository microcontrollerRepository;
 
 
-    public Collection<Microcontroller> getAllSensors() {
+    public Collection<Microcontroller> getAllMicrocontrollers() {
         return microcontrollerRepository.findAll();
     }
 
-    public Microcontroller getSensorById(String id) {
+    public Microcontroller getMicrocontrollerById(String id) {
         return microcontrollerRepository.findOne(id);
     }
 
-    public void insertSensor(Microcontroller microcontroller) {
+    public void insertMicrocontroller(Microcontroller microcontroller) {
         microcontrollerRepository.save(microcontroller);
     }
 
-    public void removeSensorById(String id) {
+    public void removeMicrocontrollerById(String id) {
         microcontrollerRepository.delete(microcontrollerRepository.findOne(id));
     }
 
-    public void updateSensorById(Microcontroller microcontroller) {
+    public void updateMicrocontrollerById(Microcontroller microcontroller) {
         Microcontroller temp_microcontroller = microcontrollerRepository.findOne(microcontroller.getId());
         temp_microcontroller.setName(microcontroller.getName());
         temp_microcontroller.setType(microcontroller.getType());
