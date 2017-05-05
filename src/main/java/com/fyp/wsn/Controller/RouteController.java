@@ -26,4 +26,9 @@ public class RouteController {
         return "about";
     }
 
+    @RequestMapping("/create/sensor")
+    public String addSensor(){
+        return "addSensor";
+    }
+
 }

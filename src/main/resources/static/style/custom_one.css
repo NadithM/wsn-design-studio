@@ -246,7 +246,18 @@ a{
 
 /* custom buttons for adding new sensors and microcontrollers */
 .custom_button{
-height: 35px;
+    border-radius: 10px;
+    height: 35px;
+    width: 50px;
+    vertical-align: middle;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    /* padding: 15px 32px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
 }
 
 /* Side bar helper box*/
@@ -353,4 +364,49 @@ height: 35px;
     width: 280px;
     margin-top: 20px;
     margin-left: 70px;
-    margin-right: 0;}
+    margin-right: 0;
+}
+
+.theme__button {
+    position: absolute;
+    cursor: pointer;
+    background-color: #f44336;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+    outline: 0 !important;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 26px;
+    transition: background-color 100ms linear;
+    height: 56px;
+    line-height: 26px;
+    width: 56px;
+    text-align: center;
+    padding: 15px;
+    bottom: -25px;
+    right: 25px;
+    font-family: 'Material-Design-Icons';
+    transition: all 200ms ease;
+}
+
+.myButton {
+    background-color:#44c767;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:4px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+    background-color:#5cbf2a;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
