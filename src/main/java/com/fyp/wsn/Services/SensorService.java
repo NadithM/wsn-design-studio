@@ -19,11 +19,8 @@ public class SensorService {
     @Autowired
     private SensorDAO sensorDAO;
 
-    // All the business logic will be implemented in here as functions data that need for that logic wil be get from
-    // DataAccess class
 
     public Collection<Sensor> getAllSensors(){
-
         return this.sensorDAO.getAllSensors();
     }
 
@@ -43,6 +40,7 @@ public class SensorService {
     }
 
     public void insertSensor(Sensor sensor) {
+
         this.sensorDAO.insertSensor(sensor);
     }
 }
