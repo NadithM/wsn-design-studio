@@ -31,4 +31,9 @@ public class RouteController {
         return "addSensor";
     }
 
+    @RequestMapping("/create/microcontroller")
+    public String addMicrocontroller(){
+        return "addMicrocontroller";
+    }
+
 }

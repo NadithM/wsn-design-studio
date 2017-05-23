@@ -36,49 +36,60 @@
     <div  class="whiteborder">
         <div class="row setup-content" id="step-1">
 
-                <h5><strong>Basic Details of Sensor </strong></h5>
+            <h5><strong>Basic Details of Microcontroller </strong></h5>
 
-                <div class="row">
-                    <div class="col-md-10">
-                        <label >Sensor Model Name</label>
-                        <input type="text" style="width: 1000px;" class="form-control" id="sensor_modal_name" placeholder="Enter Sensor  Model Name...">
-                    </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Microcontroller Modal Name</label>
+                    <input type="text" style="width: 1000px;" class="form-control" id="micro_modal_name" placeholder="Enter Microcontroller  Modal Name...">
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-10">
-                        <label >Sensor Displayed Name</label>
-                        <input type="text" style="width: 1000px;" class="form-control" id="sensor_display_name" placeholder="Enter Sensor  Displayed Name...">
-                    </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Microcontroller Displayed Name</label>
+                    <input type="text" style="width: 1000px;" class="form-control" id="micro_display_name" placeholder="Enter Microcontroller  Displayed Name...">
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-10">
-                        <label >Sensor Rated Current</label>
-                        <input type="text" style="width: 1000px;" class="form-control" id="sensor_rated_current" placeholder="Enter Sensor  Rated Current...">
-                    </div>
-                </div>                <hr>
-                <div class="row">
-                    <div class="col-md-10">
-                        <label >Required power supply</label>
-                        <input type="text" style="width: 1000px;" class="form-control" id="sensor_required_power_supply" placeholder="Enter Required power supply...">
-                    </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Microcontroller Rated Current</label>
+                    <input type="text" style="width: 1000px;" class="form-control" id="micro_rated_current" placeholder="Enter Microcontroller  Rated Current...">
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-10">
-                        <label >Sensor Description</label>
-                        <textarea id="sensor_description" style="width: 1000px;" placeholder="Enter Sensor Description..."></textarea>
-                    </div>
+            </div>                <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Required power supply</label>
+                    <input type="text" style="width: 1000px;" class="form-control" id="micro_required_power_supply" placeholder="Enter Required power supply...">
                 </div>
-                <ul class="list-inline pull-right">
-                    <li><button type="button" class="btn btn-primary nextBtn next-step custom_button_1">Continue</button></li>
-                </ul>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Compatible language </label>
+                    <select id="support_language">
+                        <option>Select programming language</option>
+                        <option value="cpp">C++</option>
+                        <option value="python">Python</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-10">
+                    <label >Microcontroller Description</label>
+                    <textarea id="micro_description" style="width: 1000px;" placeholder="Enter Microcontroller Description..."></textarea>
+                </div>
+            </div>
+            <ul class="list-inline pull-right">
+                <li><button type="button" class="btn btn-primary nextBtn next-step custom_button_1">Continue</button></li>
+            </ul>
 
         </div>
         <div class="row setup-content" id="step-2">
 
-            <h5><strong>Sensor pin details</strong></h5>
+            <h5><strong>Microcontroller pin details</strong></h5>
 
             <div class="row clearfix">
                 <div class="col-md-12 table-responsive">
@@ -86,13 +97,13 @@
                         <thead>
                         <tr >
                             <th class="text-center">
-                                Pin Type
+                                Pin Name
                             </th>
                             <th class="text-center">
-                                How many pins
+                                Pin tag
                             </th>
                             <th>
-                                <a id="add_row" class="btn btn-success ">Add Pin type</a>
+                                <a id="add_row" class="btn btn-success ">Add Pin</a>
                             </th>
                             <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
                             </th>
@@ -100,18 +111,27 @@
                         </thead>
                         <tbody>
                         <tr id='addr0' data-id="0" class="hidden">
-                            <td data-name="type_of_tag">
-
-                                <select id="type_of_tag0">
-                                    <option>Select Pin Type</option>
+                            <td data-name="pin_name">
+                                <input type="text" id='pin_name0'  placeholder='Pin Name' class="form-control"/>
+                            </td>
+                            <td data-name="pin_tag">
+                                <select id="pin_tag0">
+                                    <option>Select Tag</option>
+                                    <option value="DIGITAL_INPUT">Digital Input</option>
+                                    <option value="ANALOG_INPUT">Analog Input</option>
+                                    <option value="RX">RX</option>
+                                    <option value="TX">TX</option>
+                                    <option value="UART">UART</option>
+                                    <option value="I2C">I2C</option>
+                                    <option value="PWM">PWM</option>
                                     <option value="VCC">VCC</option>
-                                    <option value="DIGITAL">DIGITAL</option>
                                     <option value="GND">GND</option>
+                                    <option value="ENABLE">Enable</option>
                                 </select>
+
+                                <!--<input type="text" name='pin_tag0' placeholder='Pin tag' class="form-control"/>-->
                             </td>
-                            <td data-name="no_of_tag">
-                                <input type="number" id='no_of_tag0' placeholder='How many pins' class="form-control"/>
-                            </td>
+
 
                             <td data-name="del">
                                 <button name ="del0" class='btn btn-danger row-remove ' type="button">Delete Pin</button>
@@ -130,42 +150,35 @@
 
         </div>
         <div class="row setup-content" id="step-3">
-            <h5><strong>Sensor functions</strong></h5>
+            <h5><strong>Microcontroller functions</strong></h5>
 
             <table style="width: 100%;margin-top: 30px;">
                 <tbody>
+
+                <tr>
+                    <td >
+                        <label  style="width: 100%">Microcontroller initialization function</label>
+                        <textarea id="micro_initialize" style="width: 100%; height: 80px;" placeholder="Microcontroller initialize function..." style="width: 100%"></textarea>
+                    </td>
+                </tr>
+
                 <tr>
                     <td>
-                        <label  style="width: 100%">Microcontroller platform</label>
-                        <select id="micro_platform" style="width: 100%;">
-                        <option >Select Platform</option>
-                        <option value="cpp">Esp8266</option>
-                        <option value="python">Raspberry pi</option>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td >
-                        <label  style="width: 100%">Header files</label>
-                        <textarea id="sensor_header_files" style="width: 100%; height: 80px;" placeholder="Sensor header files..." style="width: 100%"></textarea>
+                        <select id="network_type" style="width: 100%;">
+                            <option >Select Technology</option>
+                            <option name="wifi">Wi-Fi</option>
+                            <option name="lora">Lora</option>
+                        </select>
                     </td>
-                </tr>
-                <tr>
-                    <td >
-                        <label  style="width: 100%">Initialize function</label>
-                        <textarea id="sensor_init_func" style="width: 100%; height: 80px;" placeholder="Sensor initialize function..." style="width: 100%"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <label  style="width: 100%">Sensor reading function</label>
-                        <textarea id="sensor_reading_func" style="width: 100%; height: 80px;" placeholder="Sensor reading function..." style="width: 100%"></textarea>
+                    <td>
+                        <textarea id="micro_network_function" style="width: 100%; height: 80px;" placeholder="Microcontroller network function..." style="width: 100%"></textarea>
                     </td>
                 </tr>
                 </tbody>
             </table>
 
             <ul class="list-inline pull-right">
-                <li><button id="add_sensor" class="btn btn-primary  custom_button_2">Finish and save</button></li>
+                <li><button id="add_micro" class="btn btn-primary  custom_button_2">Finish and save</button></li>
             </ul>
         </div>
 
@@ -180,10 +193,8 @@
 <script>
 
 
-
-//dynamic table
-
-        var no_of_pin_types = 0;
+        //dynamic table
+        var no_of_pins = 0;
 
         $("#add_row").on("click", function() {
             // Dynamic Rows Code
@@ -191,18 +202,18 @@
             // Get max row id and set new id
 
             $.each($("#tab_logic tr"), function() {
-                if (parseInt($(this).data("id")) > no_of_pin_types) {
-                    no_of_pin_types = parseInt($(this).data("id"));
+                if (parseInt($(this).data("id")) > no_of_pins) {
+                    no_of_pins = parseInt($(this).data("id"));
                 }
             });
-            no_of_pin_types++;
+            no_of_pins++;
 
             var tr = $("<tr></tr>", {
-                id: "addr"+no_of_pin_types,
-                "data-id": no_of_pin_types
+                id: "addr"+no_of_pins,
+                "data-id": no_of_pins
             });
 
-            // loop through each td and create new elements with name of no_of_pin_types
+            // loop through each td and create new elements with name of no_of_pins
             $.each($("#tab_logic tbody tr:nth(0) td"), function() {
                 var cur_td = $(this);
 
@@ -215,7 +226,7 @@
                     });
 
                     var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                    c.attr("id", $(cur_td).data("name") + no_of_pin_types);
+                    c.attr("id", $(cur_td).data("name") + no_of_pins);
                     c.appendTo($(td));
                     td.appendTo($(tr));
                 } else {
@@ -299,66 +310,54 @@
 
         $('div.setup-panel div a.btn-primary').trigger('click');
 
-    
-    
     /*
-    * 
-    * Set data set ready for add sensor 
-    * 
-    * */
-    function add_sensor_data_set() {
-        var model_name = $('#sensor_modal_name').val();
-        var display_name = $('#sensor_display_name').val();
-        var rated_current = $('#sensor_rated_current').val();
-        var power_supply = $('#sensor_required_power_supply').val();
-        var description = $('#sensor_description').val();
-        var configuration ='';
+     * Set data set ready for microcontroller
+     *
+     * */
+    function microcontroller_data_set() {
 
-        for(var i=0;i<no_of_pin_types;i++){
-            var type = $("#type_of_tag"+i).val();
-            var qty = $("#no_of_tag"+i).val();
-            configuration += (type+'-'+qty+',');
+        var model_name = $('#micro_modal_name').val();
+        var display_name = $('#micro_display_name').val();
+        var rated_current = $('#micro_rated_current').val();
+        var power_supply = $('#micro_required_power_supply').val();
+        var description = $('#micro_description').val();
+
+        var suported_language  = $('#support_language').val();
+
+        var pin_map ='';
+
+        for(var i=0;i<no_of_pins;i++){
+            var name = $("#pin_name"+i).val();
+            var type = $("#pin_tag"+i).val();
+            pin_map += (name+'-'+type+',');
         }
-        var type_last = $("#type_of_tag"+no_of_pin_types).val();
-        var qty_last = $("#no_of_tag"+no_of_pin_types).val();
-        configuration += (type_last+'-'+qty_last);
+        var name_last = $("#pin_name"+no_of_pins).val();
+        var type_last = $("#pin_tag"+no_of_pins).val();
+        pin_map += (name_last+'-'+type_last);
 
-        var cpp_header='';
-        var cpp_initialize='';
-        var cpp_reading='';
-        var python_header='';
-        var python_initialize='';
-        var python_reading='';
+        var initialize = $("#micro_initialize").val();
 
-        var platform = $('#micro_platform').val();
-        var header = $('#sensor_header_files').val();
-        var initialize = $('#sensor_init_func').val();
-        var reading = $('#sensor_reading_func').val();
+        var network_technology = $("#network_type").val();
+        var wifi_network ='';
+        var lora_network ='';
 
+        var network_function = $('#micro_network_function').val();
 
-
-        if (platform == 'cpp'){
-            cpp_header += header;
-            cpp_initialize += initialize;
-            cpp_reading += reading;
-        }else if(platform == 'python'){
-            python_header += header;
-            python_initialize += initialize;
-            python_reading += reading;
+        if (network_technology == 'wifi'){
+            wifi_network += network_function;
+        }else if(network_technology == 'lora'){
+            lora_network += network_function;
         }
 
-        var sensor = {
-            "model_name":model_name,"display_name":display_name,"rated_current":rated_current,
-            "power_supply":power_supply,"description":description,"configuration":configuration,"cpp_header":cpp_header,
-            "cpp_initialize":cpp_initialize,"cpp_reading":cpp_reading,"python_header":python_header,
-            "python_initialize":python_initialize,"python_reading":python_reading
-        };
+        var microcontroller = {
+            "model_name":model_name, "display_name":display_name,"rated_current":rated_current,"power_supply":power_supply,
+            "description":description,"suported_language":suported_language,"pin_map":pin_map,"initialize":initialize,
+            "wifi_network":wifi_network,"lora_network":lora_network
+        }
 
-        console.log(sensor);
+        console.log(microcontroller);
     }
-
-    $('#add_sensor').click(add_sensor_data_set);
-
+    $('#add_micro').click(microcontroller_data_set);
 
 </script>
 

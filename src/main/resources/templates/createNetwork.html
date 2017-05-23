@@ -47,26 +47,25 @@
             <div id="helper_box">
                 <!--helper box-->
 
-                <form id="register-form" action="" method="post" role="form" class="custom_form">
+                <div class="custom_form">
                     <div class="form-group">
-                        <input type="text" name="network_name" id="helper_form_network_name" tabindex="1" class="form-control" placeholder="Network Name" value="">
+                        <input type="text"  id="helper_form_network_name" tabindex="1" class="form-control" placeholder="Network Name" value="">
                     </div>
 
                     <div class="form-group">
-                        <input type="number" name="maximum_length_between_links" id="helper_form_maximum_length_between_links" tabindex="2" class="form-control" placeholder="Maximum distance among nodes (m)">
+                        <input type="number"  id="helper_form_maximum_length_between_links" tabindex="2" class="form-control" placeholder="Maximum distance among nodes (m)">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control"  name="description" id="helper_form_network_description" placeholder="Network description"></textarea>
+                        <textarea class="form-control"   id="helper_form_network_description" placeholder="Network description"></textarea>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
-                                <button name="finalize_network" id="finalize_network" tabindex="4" class="form-control btn btn-register"> Finalize Network </button>
-                                <!--<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">-->
+                                <button  id="finalize_network" tabindex="4" class="form-control btn btn-register"> Finalize Network </button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
 
             </div>
         </div>
@@ -81,6 +80,7 @@
     var line_id = 0;
     var added_nodes = [];
     var links = [];
+    var base_station =[];
 
 
     /*
@@ -226,6 +226,12 @@
         console.log(data);
         console.log(event);
 
+        addNode(data,event);
+
+        return false;
+    }
+
+    function addNode(data,event) {
         // Load data to node
         var node = svg_canvas.append("svg:g")
             .data([ {"x":event.clientX-600, "y":event.clientY-90, "data":data} ])
@@ -279,8 +285,63 @@
         console.log("The p element is dropped");
         added_nodes.push(data.id);
 
-        return false;
+        if(data.type == 'base'){
+            base_station.push(data.id);
+            console.log('base station : ',base_station);
+        }
+
     }
+
+
+    /*
+     * Set data set ready for sensor node
+     *
+     * */
+    function network_data_set() {
+        var name = $('#helper_form_network_name').val();
+        var avg_distance = $('#helper_form_maximum_length_between_links').val();
+        var network_description = $('#helper_form_network_description').val();
+
+        var net_map = [];
+        for (var k=0 ;k < base_station.length;k++){
+            net_map.push(base_station[k]);
+        }
+
+        for(var i=0;i<links.length;i++){
+            for (var j=0;j<base_station.length;j++){
+                var temp = net_map[j];
+
+                if(links[i].source == base_station[j]){
+                    temp += (','+links[i].target);
+                    net_map[j] = temp;
+                    break;
+                }
+                if(links[i].target == base_station[j]){
+                    temp += (','+links[i].source);
+                    net_map[j] = temp;
+                    break;
+                }
+            }
+        }
+
+        var configuration = net_map[0];
+        for(var i=1;i<net_map.length-1;i++){
+            configuration += ('-'+net_map[i]);
+        }
+        configuration += ('-'+net_map[net_map.length-1]);
+
+        var network ={
+            "name":name,
+            "network_description":network_description,
+            "avg_distance":avg_distance,
+            "configuration":configuration
+        };
+
+        console.log(network);
+    }
+    $('#finalize_network').click(network_data_set);
+
+
 
 </script>
 
