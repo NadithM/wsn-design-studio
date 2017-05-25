@@ -12,30 +12,50 @@ public class Microcontroller {
 
     @Id
     private String id;
-    private String name;
+    private String display_name;
     private String allias;
     private String color;
-    private String type;
+    private String model_name;
     private String configuration;
+    private String supported_lan;
+    private String pin_map;
 
     public Microcontroller() {
     }
 
-    public Microcontroller(String id, String name, String allias, String color, String type, String configuration) {
-        this.id = id;
-        this.name = name;
-        this.allias = allias;
-        this.color = color;
-        this.type = type;
-        this.configuration = configuration;
+    public String getPin_map() {
+        return pin_map;
     }
 
-    public Microcontroller(String id, String name, String allias, String color, String type) {
+    public void setPin_map(String pin_map) {
+        this.pin_map = pin_map;
+    }
+
+    public Microcontroller(String id, String display_name, String allias, String color, String model_name, String configuration, String supported_lan, String pin_map) {
         this.id = id;
-        this.name = name;
+        this.display_name = display_name;
         this.allias = allias;
         this.color = color;
-        this.type = type;
+        this.model_name = model_name;
+        this.configuration = configuration;
+        this.supported_lan = supported_lan;
+        this.pin_map = pin_map;
+    }
+
+    public String getSupported_lan() {
+        return supported_lan;
+    }
+
+    public void setSupported_lan(String supported_lan) {
+        this.supported_lan = supported_lan;
+    }
+
+    public Microcontroller(String id, String display_name, String allias, String color, String model_name) {
+        this.id = id;
+        this.display_name = display_name;
+        this.allias = allias;
+        this.color = color;
+        this.model_name = model_name;
     }
 
     public String getConfiguration() {
@@ -54,12 +74,12 @@ public class Microcontroller {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplay_name() {
+        return display_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
     }
 
     public String getAllias() {
@@ -78,11 +98,11 @@ public class Microcontroller {
         this.color = color;
     }
 
-    public String getType() {
-        return type;
+    public String getModel_name() {
+        return model_name;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setModel_name(String model_name) {
+        this.model_name = model_name;
     }
 }

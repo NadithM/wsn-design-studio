@@ -19,8 +19,28 @@ public class Sensor {
     private String type;
     private String configuration;
     private String color;
+    private String cpp_function;
+    private String cpp_includes;
+    private String pin_map;
 
     //constructors and getters and setters are auto generated
+
+
+    public String getCpp_includes() {
+        return cpp_includes;
+    }
+
+    public void setCpp_includes(String cpp_includes) {
+        this.cpp_includes = cpp_includes;
+    }
+
+    public String getCpp_function() {
+        return cpp_function;
+    }
+
+    public void setCpp_function(String cpp_function) {
+        this.cpp_function = cpp_function;
+    }
 
     public String getColor() {
         return color;
@@ -41,19 +61,14 @@ public class Sensor {
         this.configuration = configuration;
     }
 
-    public Sensor(String id, String name, String type, String configuration, String color) {
+    public Sensor(String id, String name, String type, String configuration, String color, String cpp_function, String cpp_includes) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.configuration = configuration;
         this.color = color;
-    }
-
-    public Sensor(String id, String name, String type, String color) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.color=color;
+        this.cpp_function = cpp_function;
+        this.cpp_includes = cpp_includes;
     }
 
     public String getId() {

@@ -1,7 +1,6 @@
 package com.fyp.wsn.DataAccess;
 
 import com.fyp.wsn.Entity.Microcontroller;
-import com.fyp.wsn.Entity.Sensor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,14 +29,29 @@ public class MicrocontrollerDAO {
         microcontrollerRepository.save(microcontroller);
     }
 
+    public Microcontroller getMicrocontrollerByName(String Name){
+        Collection<Microcontroller> temp_list=getAllMicrocontrollers();
+
+        for(Microcontroller x : temp_list){
+
+            if(x.getModel_name().equals(Name)) return  x;
+
+        }
+
+        return null;
+    }
+
     public void removeMicrocontrollerById(String id) {
         microcontrollerRepository.delete(microcontrollerRepository.findOne(id));
     }
 
     public void updateMicrocontrollerById(Microcontroller microcontroller) {
         Microcontroller temp_microcontroller = microcontrollerRepository.findOne(microcontroller.getId());
-        temp_microcontroller.setName(microcontroller.getName());
-        temp_microcontroller.setType(microcontroller.getType());
+        temp_microcontroller.setDisplay_name(microcontroller.getDisplay_name());
+        temp_microcontroller.setModel_name(microcontroller.getModel_name());
+        temp_microcontroller.setColor(microcontroller.getColor());
+        temp_microcontroller.setAllias(microcontroller.getAllias());
+        temp_microcontroller.setConfiguration(microcontroller.getConfiguration());
         microcontrollerRepository.save(temp_microcontroller);
 
     }
