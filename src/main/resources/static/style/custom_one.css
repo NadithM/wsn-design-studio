@@ -352,6 +352,7 @@ a{
     padding: 14px 0;
     text-transform: uppercase;
     border-color: #1CB94A;
+    margin: 10px;
 }
 .btn-register:hover,
 .btn-register:focus {
@@ -495,4 +496,8 @@ a{
 
 .custom_table_sensor_pin{
     margin-top: 30px;
+}
+
+.code_download_table{
+    margin-top: 50px;
 }

@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-6 col-sm-offset-3">
+                            <div class="col-sm-6 col-sm-offset-3" id="helper_button">
                                 <button  id="finalize_network" tabindex="4" class="form-control btn btn-register"> Finalize Network </button>
                             </div>
                         </div>
@@ -79,6 +79,7 @@
     var line;
     var line_id = 0;
     var added_nodes = [];
+    var node_names = [];
     var links = [];
     var base_station =[];
 
@@ -284,6 +285,7 @@
 
         console.log("The p element is dropped");
         added_nodes.push(data.id);
+        node_names.push(data.name);
 
         if(data.type == 'base'){
             base_station.push(data.id);
@@ -332,14 +334,19 @@
 
         var network ={
             "name":name,
-            "network_description":network_description,
-            "avg_distance":avg_distance,
+            "description":network_description,
+            "average_distance":avg_distance,
             "configuration":configuration
         };
 
         console.log(network);
+
+        $("#helper_button").append('<a href="/code/'+node_names.join()+'" class="form-control btn btn-register">Download Code</a>');
+
     }
     $('#finalize_network').click(network_data_set);
+
+
 
 
 
