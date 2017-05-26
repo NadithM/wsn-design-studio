@@ -33,6 +33,18 @@ public class SensorDAO {
         sensorRepository.save(sensor);
     }
 
+    public Sensor getSensorByName(String Name){
+        Collection<Sensor> temp_list=getAllSensors();
+
+        for(Sensor x : temp_list){
+
+            if(x.getType().equals(Name)) return  x;
+
+        }
+
+        return null;
+    }
+
     public void removeSensorById(String id) {
         sensorRepository.delete(sensorRepository.findOne(id));
     }
@@ -41,6 +53,12 @@ public class SensorDAO {
         Sensor temp_sensor = sensorRepository.findOne(sensor.getId());
         temp_sensor.setName(sensor.getName());
         temp_sensor.setType(sensor.getType());
+        temp_sensor.setColor(sensor.getColor());
+        temp_sensor.setConfiguration(sensor.getConfiguration());
+        temp_sensor.setCpp_function(sensor.getCpp_function());
+        temp_sensor.setCpp_includes(sensor.getCpp_includes());
+
+
         sensorRepository.save(temp_sensor);
 
     }

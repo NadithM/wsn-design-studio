@@ -1,5 +1,9 @@
 package com.fyp.wsn.Entity;
 
+import com.fyp.wsn.DataAccess.ClientSessionDAO;
+import com.fyp.wsn.DataAccess.ClientSessionRepository;
+import com.fyp.wsn.DataAccess.MicrocontrollerDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,6 +14,9 @@ import java.util.HashMap;
  */
 @Document(collection = "clientsession")
 public class ClientSession {
+
+    @Autowired
+    private ClientSessionDAO clientSessionDAO;
 
     @Id
     private int id;
@@ -73,6 +80,9 @@ public class ClientSession {
                 this.current_usage_of_pins.put(key, value);
             }
         }
+
+        clientSessionDAO.updateSessionById(this);
+
 
     }
 
