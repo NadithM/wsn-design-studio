@@ -23,7 +23,8 @@
         <tbody>
         <tr th:each="node : ${nodes}">
             <td th:text="${node}"></td>
-            <td ><a class="form-control btn btn-register" th:text="${node}" th:href="@{|http://localhost:8080/codes/${node}.ino|}"> </a></td>
+            <!--<td ><a class="form-control btn btn-register" th:text="${node}" th:href="@{|/output/${node}_code.ino|}"> </a></td>-->
+            <td ><a class="form-control btn btn-register" th:text="${node}" th:href="@{|/output/${node}_code.ino|}"> </a></td>
         </tr>
     </table>
 

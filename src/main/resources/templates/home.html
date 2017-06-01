@@ -74,11 +74,6 @@
                         <input type="text" name="sensor_node_name" id="helper_form_sensor_node_name" tabindex="1"
                                class="form-control" placeholder="Sensor Node Name" value="">
                     </div>
-
-                    <div class="form-group">
-                        <input type="number" name="time_interval" id="helper_form_time_interval" tabindex="2"
-                               class="form-control" placeholder="Data Sending Interval (s)">
-                    </div>
                     <div class="form-group">
                         <select class="selectpicker" id="helper_form_type">
                             <option>Select Sensor Node type</option>
@@ -86,6 +81,12 @@
                             <option value="node"> Node</option>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <input type="number" name="time_interval" id="helper_form_time_interval"
+                               class="form-control" placeholder="Data Sending Interval (s)">
+                    </div>
+
                     <div class="form-group">
                         <input type="text" name="ssid" id="helper_form_ssid"
                                class="form-control" placeholder="SSID of connecting Wi-Fi network (optional)">
@@ -104,7 +105,7 @@
                                 <button name="save_sensor_node" id="save_sensor_node" tabindex="4"
                                         class="form-control btn btn-register"> Save sensor Node
                                 </button>
-                                <!--<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">-->
+                                <!--<input model_name="submit" display_name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">-->
                             </div>
                         </div>
                     </div>
@@ -140,7 +141,7 @@
                 var last = '</div><div class="palette_port palette_port_output" style="top: 9px;"></div></div>';
 
                 //end point where data is looking front end
-                $("#sensor_list_home_page").append(first+data[i].name+last);
+                $("#sensor_list_home_page").append(first+data[i].display_name+last);
             }
         });
 
@@ -159,7 +160,7 @@
             var last = '</div><div class="palette_port palette_port_output" style="top: 9px;"></div></div>';
 
             //end point where data is looking front end
-            $("#microcontrollers_list_home_page").append(first + data[i].name + last);
+            $("#microcontrollers_list_home_page").append(first + data[i].display_name + last);
         }
     });
 
@@ -167,20 +168,20 @@
      * Sensor Node data loading to home page of WSN App
      *
      * */
-    //    $.get( "http://localhost:3000/sensorNode", function( data ) {
-    //
-    //        for (var i=0;i<data.length;i++){
-    //
-    //            //url encoded value of given data
-    //            var url_encode_value = encodeURIComponent(JSON.stringify(data[i]));
-    //
-    //            var first  = '<div id="sensor_node_' + i + '" data-json='+url_encode_value+'  class="palette_node ui-draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" style="background-color: rgb(192, 237, 192);height: 28px;"><div class="palette_label">';
-    //            var last = '</div><div class="palette_port palette_port_output" style="top: 9px;"></div></div>';
-    //
-    //            //end point where data is looking front end
-    //            $("#sensor_node_home_page").append(first+data[i].name+last);
-    //        }
-    //    });
+        $.get( "http://localhost:8080/sensornode", function( data ) {
+
+            for (var i=0;i<data.length;i++){
+
+                //url encoded value of given data
+                var url_encode_value = encodeURIComponent(JSON.stringify(data[i]));
+
+                var first  = '<div id="sensor_node_' + i + '" data-json='+url_encode_value+'  class="palette_node ui-draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" style="background-color: rgb(192, 237, 192);height: 28px;"><div class="palette_label">';
+                var last = '</div><div class="palette_port palette_port_output" style="top: 9px;"></div></div>';
+
+                //end point where data is looking front end
+                $("#sensor_node_home_page").append(first+data[i].name+last);
+            }
+        });
 
 
     /*
@@ -330,10 +331,10 @@
 
         var req_body;
         if (first_time){
-            req_body = { "id" : 0, "code" : 200, "error_description" : null, "config_diagram" :config_diagram(data), "type" : "Sensor node" }
+            req_body = { "id" : 0, "code" : 200, "error_description" : null, "config_diagram" :config_diagram(data), "model_name" : "Sensor node" }
             first_time = false;
         }else {
-            req_body = { "id" : user_id, "code" : 200, "error_description" : null, "config_diagram" :config_diagram(data), "type" : "Sensor node" }
+            req_body = { "id" : user_id, "code" : 200, "error_description" : null, "config_diagram" :config_diagram(data), "model_name" : "Sensor node" }
         }
         console.log(req_body);
         $.ajax({
@@ -390,8 +391,8 @@
             .attr("x", event.layerX - 100 + 30)
             .attr("y", event.layerY - 20 + 18)
             .text(function (d) {
-                console.log('sensor name : ' + d.data.name)
-                return d.data.name;
+                console.log('sensor display_name : ' + d.data.display_name)
+                return d.data.display_name;
             });
 
         // add connecting point to node and add draw line functionality
@@ -424,16 +425,31 @@
     function sensor_node_data_set() {
         var name = $('#helper_form_sensor_node_name').val();
         var type = $('#helper_form_type').val();
+        var interval = $('#helper_form_time_interval').val();
+        var color  = '#c0edc0';
+
         var internet_ssid =$('#helper_form_ssid').val();
         var internet_password =$('#helper_form_pwd').val();
-        var interval = $('#helper_form_time_interval').val();
+
         var configuration =   added_nodes.toString();
         var description = $('#helper_form_description').val()
 
-        var sensorNode = {"name":name,"type":type,"internet_ssid":internet_ssid,"internet_password":internet_password,
-            "interval":interval,"configuration":configuration,"description":description};
+        var sensorNode = {"name":name,"type":type, "interval":interval,"color":color,"internet_ssid":internet_ssid,"internet_password":internet_password,
+           "configuration":configuration,"description":description};
 
         console.log(sensorNode);
+
+        $.ajax({
+            type: "POST",
+            url:  "http://localhost:8080/sensornode",
+            contentType:'application/json',
+            data: JSON.stringify(sensorNode),
+            success: function(){
+                alert("Sensor Node Added Successfully");
+            }
+        });
+
+
     }
     $('#save_sensor_node').click(sensor_node_data_set);
 

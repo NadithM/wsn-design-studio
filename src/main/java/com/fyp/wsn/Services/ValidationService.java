@@ -68,7 +68,8 @@ public class ValidationService {
 
                 HashMap<String,Integer> initial_map=new HashMap<String,Integer>();
                 Microcontroller temp_micro=this.microcontrollerDAO.getMicrocontrollerById(newly_added_device_id);
-                ClientSession new_client=new ClientSession(new_session_index,temp_micro);
+                temp_micro.setConfiguration(temp_micro.setConfig(temp_micro.getPin_map()));
+                ClientSession new_client=new ClientSession(new_session_index,temp_micro,this.clientSessionDAO);
                 validation.setId(new_session_index);
                 this.clientSessionDAO.insertClientSession(new_client);
 
@@ -83,7 +84,7 @@ public class ValidationService {
 
                 //update the current matrix logic
                 if(isvalid==true){
-                    client_design.updateCurrentPinConfiguration(temp_sensor,validation);
+                    client_design.updateCurrentPinConfiguration(temp_sensor,validation,this.clientSessionDAO);
                 }
 
                 //return the error of conneccting

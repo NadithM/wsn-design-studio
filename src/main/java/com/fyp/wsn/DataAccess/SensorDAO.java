@@ -38,7 +38,7 @@ public class SensorDAO {
 
         for(Sensor x : temp_list){
 
-            if(x.getType().equals(Name)) return  x;
+            if(x.getModel_name().equals(Name)) return  x;
 
         }
 
@@ -51,8 +51,8 @@ public class SensorDAO {
 
     public void updateSensorById(Sensor sensor) {
         Sensor temp_sensor = sensorRepository.findOne(sensor.getId());
-        temp_sensor.setName(sensor.getName());
-        temp_sensor.setType(sensor.getType());
+        temp_sensor.setDisplay_name(sensor.getDisplay_name());
+        temp_sensor.setModel_name(sensor.getModel_name());
         temp_sensor.setColor(sensor.getColor());
         temp_sensor.setConfiguration(sensor.getConfiguration());
         temp_sensor.setCpp_function(sensor.getCpp_function());

@@ -23,6 +23,7 @@ public class HandleSensorFunctions {
         avalible_pin_number =new HashMap<>();
         new_assigned_pins=new HashMap<>();
         new_edited_functions=new HashMap<>();
+
         ArrayList<Pair> temp_list;
         HashMap<Integer,String> temp_hashmap;
         String sensor_funcion=null;
@@ -38,10 +39,9 @@ public class HandleSensorFunctions {
             sensor_funcion=temp_sensor.getCpp_function();
             for(String x :configure_type){
                String [] pair=x.split("-");
-
                String type_of_pin=pair[0];
                if(avalible_pin_number.containsKey(type_of_pin));
-               else {
+               else{
                    avalible_pin_number.put(type_of_pin,1);
                }
 
