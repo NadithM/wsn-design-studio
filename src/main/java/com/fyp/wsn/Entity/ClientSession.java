@@ -26,10 +26,13 @@ public class ClientSession {
 
 
     public ClientSession() {
+
+
     }
 
-    public ClientSession(int id, Microcontroller micro_id) {
+    public ClientSession(int id, Microcontroller micro_id,ClientSessionDAO clientSessionDAO) {
         this.id = id;
+        this.clientSessionDAO=clientSessionDAO;
         current_usage_of_pins=new HashMap<>();
         String [] pair_list =micro_id.getConfiguration().split(",");
         for(String x: pair_list){
@@ -63,7 +66,7 @@ public class ClientSession {
         return true;
     }
 
-    public  void updateCurrentPinConfiguration(Sensor sensor_id,Validation validation){
+    public  void updateCurrentPinConfiguration(Sensor sensor_id,Validation validation,ClientSessionDAO clientSessionDAOa){
 
         String [] pair_list =sensor_id.getConfiguration().split(",");
 
@@ -81,7 +84,7 @@ public class ClientSession {
             }
         }
 
-        clientSessionDAO.updateSessionById(this);
+        clientSessionDAOa.insertClientSession(this);
 
 
     }

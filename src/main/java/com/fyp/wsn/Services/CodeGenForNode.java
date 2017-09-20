@@ -3,9 +3,7 @@ package com.fyp.wsn.Services;
 import com.fyp.wsn.DataAccess.*;
 import com.fyp.wsn.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import javax.swing.text.Document;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -125,7 +123,7 @@ public class CodeGenForNode {
                 int function_no=entry1.getKey();
                 String function=entry1.getValue();
                 Sensor sensor_obj = this.sensorDAO.getSensorById(key);
-                xml.addElement("function_code", sensor_obj.getName() + "function"+function_no, function + "\n");
+                xml.addElement("function_code", sensor_obj.getDisplay_name() + "function"+function_no, function + "\n");
 
             }
 
@@ -205,7 +203,7 @@ public class CodeGenForNode {
 
                 code_next=code_pt+code_next;
 
-                xml.addElement("loop_middle","function_"+temp_sen.getName(), code_next+"\n");
+                xml.addElement("loop_middle","function_"+temp_sen.getDisplay_name(), code_next+"\n");
 
             }
 
@@ -325,7 +323,7 @@ public class CodeGenForNode {
 
     public void getGeneralFunctionNode(ModifyXMLFile xml){
 
-        AllFunctions temp_all_function=this.allFunctionsDAO.getAllFunctionsById("cpp_node");
+        AllFunctions temp_all_function=this.allFunctionsDAO.getAllFunctionsById("ccp_node");
         HashMap<String,String> temp_map_function=temp_all_function.getFunction_map();
 
 
@@ -341,7 +339,7 @@ public class CodeGenForNode {
 
     public void getGeneralFunctionBase(ModifyXMLFile xml){
 
-        AllFunctions temp_all_function=this.allFunctionsDAO.getAllFunctionsById("cpp_base");
+        AllFunctions temp_all_function=this.allFunctionsDAO.getAllFunctionsById("ccp_base");
         HashMap<String,String> temp_map_function=temp_all_function.getFunction_map();
 
         int i=0;
@@ -365,7 +363,7 @@ public class CodeGenForNode {
 
 
     private String GenerateCppNode(String key,ArrayList<String> sensor_module_list){
-        ModifyXMLFile xml_structure=new ModifyXMLFile("d:\\testcodenode.xml","d:\\testcodeoutputnode.xml");
+        ModifyXMLFile xml_structure=new ModifyXMLFile("C:\\Users\\Asela\\IdeaProjects\\wsn-design-studio\\src\\main\\resources\\input\\testcodenode.xml","d:\\testcodeoutputnode.xml");
 
         xml_structure.getReady();
         Microcontroller node_microcontroller=this.microcontrollerDAO.getMicrocontrollerById(key);
@@ -389,7 +387,7 @@ public class CodeGenForNode {
             String pin_array=temp_sensor.getConfiguration();
             sensor_pin=getSensorPin(pin_array);
 
-            analyzer.handleSensor(sensor_id,handleSensorFunctions,sensor_pin,xml_structure,temp_sensor.getName());
+            analyzer.handleSensor(sensor_id,handleSensorFunctions,sensor_pin,xml_structure,temp_sensor.getDisplay_name());
 
 
         }
@@ -412,13 +410,13 @@ public class CodeGenForNode {
             e.printStackTrace();
         }
 
-        WriteToFile("d:\\"+this.getNode_name()+"_"+"code"+".ino",xml_structure.getText());
+//        WriteToFile("d:\\"+this.getNode_name()+"_"+"code"+".ino",xml_structure.getText());
 
         return null;
     }
 
     private String GenerateCppBase(String key){
-        ModifyXMLFile xml_structure=new ModifyXMLFile("d:\\testcodenode.xml","d:\\testcodeoutputnode.xml");
+        ModifyXMLFile xml_structure=new ModifyXMLFile("C:\\Users\\Asela\\IdeaProjects\\wsn-design-studio\\src\\main\\resources\\input\\testcodenode.xml","d:\\testcodeoutputnode.xml");
 
         xml_structure.getReady();
         Microcontroller node_microcontroller=this.microcontrollerDAO.getMicrocontrollerById(key);
@@ -443,7 +441,7 @@ public class CodeGenForNode {
             e.printStackTrace();
         }
 
-        WriteToFile("d:\\"+this.getNode_name()+"_"+"code"+".ino",xml_structure.getText());
+     //   WriteToFile("d:\\"+this.getNode_name()+"_"+"code"+".ino",xml_structure.getText());
 
         return null;
     }

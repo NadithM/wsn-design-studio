@@ -14,12 +14,29 @@ public class SensorNode {
     private String name;
     private String type;
     private String interval;
+    private String color;
     private String doc;
     private String distance_from_base;
     private String internet_ssid;
     private String internet_password;
     private  String configuration;
+    private String description;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getConfiguration() {
         return configuration;

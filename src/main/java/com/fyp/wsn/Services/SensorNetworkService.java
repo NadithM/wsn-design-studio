@@ -51,8 +51,7 @@ public class SensorNetworkService {
 
         this.sensorNetworkDAO.insertSensorNetwork(sensorNetwork);
 
-        SensorNetwork temp_sensornetwork=this.sensorNetworkDAO.getSensorNetworkByName(sensorNetwork.getName());
-        CodeGenForNetwork temp_code = new CodeGenForNetwork(temp_sensornetwork.getConfiguration(),this.sensorNodeDAO,this.microcontrollerDAO,this.sensorNetworkDAO);
+        CodeGenForNetwork temp_code = new CodeGenForNetwork(sensorNetwork.getConfiguration(),this.sensorNodeDAO,this.microcontrollerDAO,this.sensorNetworkDAO);
 
         temp_code.finalizedNetworkCode();
 
